@@ -1,0 +1,58 @@
+config:
+  credentials: []
+  project_repos:
+    earth.bsc.es/gitlab/encomienda/sdswas.products:
+      branch: master
+      repo: https://earth.bsc.es/gitlab/encomienda/sdswas.products
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      earth.bsc.es/gitlab/encomienda/sdswas.products git:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-saffron-budgerigar.sh
+        container: qc.acc_homely-cardinal-sheepdog
+  QC.Doc:
+    repos:
+      earth.bsc.es/gitlab/encomienda/sdswas.products find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-gold-gharial.sh
+        container: qc.doc_muggy-cyan-rat
+      earth.bsc.es/gitlab/encomienda/sdswas.products git:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-wheat-squirt.sh
+        container: qc.doc_leaky-ruby-wolf
+      earth.bsc.es/gitlab/encomienda/sdswas.products restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-denim-labradoodle.sh
+        container: qc.doc_shaky-wheat-donkey
+  QC.Lic:
+    repos:
+      earth.bsc.es/gitlab/encomienda/sdswas.products licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.gummy-crimson-cockroach.sh
+        container: qc.lic_skanky-bistre-lemur
+  QC.Sec:
+    repos:
+      earth.bsc.es/gitlab/encomienda/sdswas.products bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-fuchsia-tapir.sh
+        container: qc.sec_ugly-harlequin-cockroach
+  QC.Sty:
+    repos:
+      earth.bsc.es/gitlab/encomienda/sdswas.products flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-salmon-turtle.sh
+        container: qc.sty_baggy-teal-zebu
+  QC.Ver:
+    repos:
+      earth.bsc.es/gitlab/encomienda/sdswas.products get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-cornflower-tortoise.sh
+        container: qc.ver_lousy-razzmatazz-magpie
+timeout: 5400
